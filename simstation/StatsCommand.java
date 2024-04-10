@@ -12,6 +12,6 @@ public class StatsCommand extends Command {
             throw new Exception("Model must instantiate Simulation");
         }
 
-        // execute command
+        // add execution
     }
 }
