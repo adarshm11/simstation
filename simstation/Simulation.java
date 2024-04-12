@@ -56,6 +56,11 @@ public class Simulation extends Model {
         notifySubs();
     }
 
+    public void stats(){
+        int numAgents = agents.size();
+        Utilities.inform("#agents = " + numAgents + "\nclock = " + clock);
+    }
+
     public Agent getNeighbor(Agent a, double radius){
         return null;
     }
