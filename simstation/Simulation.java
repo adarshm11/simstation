@@ -3,7 +3,7 @@ import mvc.*;
 import java.util.*;
 
 public class Simulation extends Model {
-    private List<Agent> agents;
+    public List<Agent> agents = new ArrayList<>();
     transient private Timer timer;
     private int clock = 0;
     protected static int SIZE; // should be initialized to size of view panel, I think
@@ -82,5 +82,11 @@ public class Simulation extends Model {
         return null;
     }
 
-    public void populate(){}
+    public void populate(){
+    }
+
+    public void addAgents(Agent a){
+        agents.add(a);
+        a.world = this;
+    }
 }
