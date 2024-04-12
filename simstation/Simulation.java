@@ -57,6 +57,28 @@ public class Simulation extends Model {
     }
 
     public Agent getNeighbor(Agent a, double radius){
+        Random rand = new Random();
+        int rng = rand.nextInt(agents.size());
+        Agent chosen = agents.get(rng);
+        int i = rng;
+        Agent neighbor = null;
+        boolean flagged = false;
+        while(!flagged){
+            double xcor = Math.abs(chosen.xc - a.xc);
+            double ycor = Math.abs(chosen.yc - a.yc);
+            chosen = agents.get(i);
+            i++;
+            if ((xcor <= radius && ycor <= radius)){
+                neighbor = chosen;
+                return neighbor;
+            }
+            if (i == rng){
+                flagged = true;
+            }
+            if (i == agents.size()){
+                i = 0;
+            }
+        }
         return null;
     }
 
