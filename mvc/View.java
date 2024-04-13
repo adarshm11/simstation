@@ -2,7 +2,7 @@ package mvc;
 
 import javax.swing.*;
 
-public class View extends JPanel implements Subscriber {
+public abstract class View extends JPanel implements Subscriber {
 
     protected Model model;
 
@@ -13,7 +13,7 @@ public class View extends JPanel implements Subscriber {
 
     // Subscriber update method
 
-    public void update() {}
+    public abstract void update();
 
     public void setModel(Model newModel) {
         if (this.model != null) {
