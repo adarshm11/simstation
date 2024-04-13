@@ -3,7 +3,7 @@ import mvc.*;
 import java.util.*;
 
 public class Simulation extends Model {
-    private List<Agent> agents;
+    public List<Agent> agents = new ArrayList<>();
     transient private Timer timer;
     private int clock = 0;
     protected static int SIZE; // should be initialized to size of view panel, I think
@@ -62,8 +62,36 @@ public class Simulation extends Model {
     }
 
     public Agent getNeighbor(Agent a, double radius){
+        Random rand = new Random();
+        int rng = rand.nextInt(agents.size());
+        Agent chosen = agents.get(rng);
+        int i = rng;
+        Agent neighbor = null;
+        boolean flagged = false;
+        while(!flagged){
+            double xcor = Math.abs(chosen.xc - a.xc);
+            double ycor = Math.abs(chosen.yc - a.yc);
+            chosen = agents.get(i);
+            i++;
+            if ((xcor <= radius && ycor <= radius)){
+                neighbor = chosen;
+                return neighbor;
+            }
+            if (i == rng){
+                flagged = true;
+            }
+            if (i == agents.size()){
+                i = 0;
+            }
+        }
         return null;
     }
 
-    public void populate(){}
+    public void populate(){
+    }
+
+    public void addAgents(Agent a){
+        agents.add(a);
+        a.world = this;
+    }
 }
