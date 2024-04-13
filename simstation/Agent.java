@@ -4,6 +4,7 @@ import mvc.*;
 import java.awt.*;
 
 public abstract class Agent implements Subscriber, Runnable {
+
     protected Simulation world;
     protected String name;
     protected Heading heading;
@@ -103,10 +104,11 @@ public abstract class Agent implements Subscriber, Runnable {
         }
     }
 
-    public abstract void onStart();
 
-    public abstract void onInterrupted();
+    public void onStart(){}
 
-    public abstract void onExit();
+    public void onInterrupted(){}
+
+    public void onExit(){}
 
 }
