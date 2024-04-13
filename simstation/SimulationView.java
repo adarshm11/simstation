@@ -11,6 +11,7 @@ public class SimulationView extends View {
         super(model);
     }
 
+
     @Override
     public void paintComponent(Graphics gc) {
         super.paintComponent(gc);
