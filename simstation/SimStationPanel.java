@@ -13,8 +13,7 @@ public class SimStationPanel extends AppPanel {
 
     public SimStationPanel(AppFactory factory){
         super(factory);
-        View simulationView = factory.makeView(model);
-        add(simulationView);
+
 
         start = new JButton("Start");
         start.addActionListener(this);
