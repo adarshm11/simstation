@@ -2,8 +2,9 @@ package simstation;
 import mvc.*;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public abstract class Agent implements Subscriber, Runnable {
+public abstract class Agent implements Runnable, Serializable {
 
     protected Simulation world;
     protected String name;
@@ -12,7 +13,7 @@ public abstract class Agent implements Subscriber, Runnable {
     protected int yc;
     protected boolean suspended = false;
     protected boolean stopped = false;
-    protected Thread myThread;
+    transient protected Thread myThread;
 
     public synchronized void checkSuspended(){
         try {
@@ -43,7 +44,7 @@ public abstract class Agent implements Subscriber, Runnable {
         while (!isStopped()){
             try {
                 update();
-                Thread.sleep(1000);
+                Thread.sleep(20);
                 checkSuspended();
             } catch (InterruptedException e){
                 System.out.println(e.getMessage());

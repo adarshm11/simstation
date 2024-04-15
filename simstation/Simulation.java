@@ -6,7 +6,7 @@ public class Simulation extends Model {
     public List<Agent> agents = new ArrayList<>();
     transient private Timer timer;
     private int clock = 0;
-    protected static int SIZE; // should be initialized to size of view panel, I think
+    protected static int SIZE = 500; // should be initialized to size of view panel, I think
 
     private void startTimer(){
         timer = new Timer();
@@ -26,6 +26,7 @@ public class Simulation extends Model {
 
     // up next are the methods corresponding to the buttons - unsure if these preliminary implementations are correct
     public void start(){
+        startTimer();
         populate();
         for (Agent a : agents){
             Thread t = new Thread(a);
@@ -50,6 +51,7 @@ public class Simulation extends Model {
     }
 
     public void stop(){
+        stopTimer();
         for (Agent a : agents){
             a.stop();
         }
