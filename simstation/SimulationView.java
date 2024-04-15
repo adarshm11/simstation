@@ -31,6 +31,6 @@ public class SimulationView extends View {
     private void drawAgent(Graphics gc, Agent agent) {
         // Drawing the agent as a dot
         gc.setColor(Color.WHITE);
-        gc.fillOval(agent.xc, agent.yc, 5, 5);
+        gc.fillOval(agent.xc, agent.yc, 10, 10);
     }
 }
