@@ -4,15 +4,17 @@ import mvc.*;
 import java.awt.*;
 import java.io.Serializable;
 
+
 public abstract class Agent implements Runnable, Serializable {
 
     protected Simulation world;
     protected String name;
     protected Heading heading;
-    protected int xc;
-    protected int yc;
+    protected int xc = Utilities.rng.nextInt(Simulation.SIZE);
+    protected int yc = Utilities.rng.nextInt(Simulation.SIZE);
     protected boolean suspended = false;
     protected boolean stopped = false;
+    protected Color color = Color.WHITE;
     transient protected Thread myThread;
 
     public synchronized void checkSuspended(){
