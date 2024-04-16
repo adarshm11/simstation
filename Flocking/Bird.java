@@ -14,6 +14,9 @@ public class Bird extends Agent {
 
     public void update(){
         Bird neighbor = (Bird) world.getNeighbor(this, 100);
+        while (neighbor == null){
+            neighbor = (Bird) world.getNeighbor(this, 100);
+        }
         int newSpeed = neighbor.speed;
         Heading newHeading = neighbor.heading;
         this.speed = newSpeed;
