@@ -3,16 +3,20 @@ package simstation;
 import mvc.*;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public abstract class Agent implements Subscriber, Runnable {
+
+public abstract class Agent implements Runnable, Serializable {
+
     protected Simulation world;
     protected String name;
     protected Heading heading;
-    protected int xc;
-    protected int yc;
+    protected int xc = Utilities.rng.nextInt(Simulation.SIZE);
+    protected int yc = Utilities.rng.nextInt(Simulation.SIZE);
     protected boolean suspended = false;
     protected boolean stopped = false;
-    protected Thread myThread;
+    protected Color color = Color.WHITE;
+    transient protected Thread myThread;
 
     public synchronized void checkSuspended() {
         try {
@@ -47,7 +51,7 @@ public abstract class Agent implements Subscriber, Runnable {
         while (!isStopped()) {
             try {
                 update();
-                Thread.sleep(1000);
+                Thread.sleep(20);
                 checkSuspended();
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
@@ -117,10 +121,11 @@ public abstract class Agent implements Subscriber, Runnable {
         }
     }
 
-    public abstract void onStart();
 
-    public abstract void onInterrupted();
+    public void onStart(){}
 
-    public abstract void onExit();
+    public void onInterrupted(){}
+
+    public void onExit(){}
 
 }

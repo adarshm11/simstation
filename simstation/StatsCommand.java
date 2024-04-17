@@ -13,6 +13,13 @@ public class StatsCommand extends Command {
         }
 
         Simulation s = (Simulation) model;
-        s.stats();
+        String[] stats = s.getStats();
+        String inform = "";
+        int i;
+        for (i = 0; i < stats.length - 1; i++){
+            inform += stats[i] + "\n";
+        }
+        inform += stats[i];
+        Utilities.inform(inform);
     }
 }
