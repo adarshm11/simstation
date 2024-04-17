@@ -40,7 +40,7 @@ public class PlagueAgent extends Agent {
 
 
         heading = Heading.random();
-        int steps = Utilities.rng.nextInt(2) + 1;
+        int steps = Utilities.rng.nextInt(10) + 1;
         move(steps);
     }
 }
