@@ -5,7 +5,7 @@ import java.util.*;
 public class Simulation extends Model {
     public List<Agent> agents = new ArrayList<>();
     transient private Timer timer;
-    private int clock = 0;
+    protected int clock = 0;
     protected static int SIZE = 500; // should be initialized to size of view panel, I think
 
     private void startTimer(){

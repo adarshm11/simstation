@@ -32,5 +32,9 @@ public class Prisoner extends Agent {
         return fitness;
     }
 
+    public void update() {
+        // must be implemented
+    }
+
     // Other methods as needed
 }
