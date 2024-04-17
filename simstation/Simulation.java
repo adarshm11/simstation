@@ -111,4 +111,8 @@ public class Simulation extends Model {
         agents.add(a);
         a.world = this;
     }
+
+    public synchronized Iterator<Agent> iterator(){
+        return agents.iterator();
+    }
 }

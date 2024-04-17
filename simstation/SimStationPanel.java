@@ -1,7 +1,7 @@
 package simstation;
 
 import mvc.*;
-import java.awt.*;
+import java.util.*;
 import javax.swing.*;
 
 public class SimStationPanel extends AppPanel {
@@ -31,5 +31,16 @@ public class SimStationPanel extends AppPanel {
         controlPanel.add(resume);
         controlPanel.add(stop);
         controlPanel.add(stats);
+    }
+
+    @Override
+    public void setModel(Model m){
+        super.setModel(m);
+        Simulation s = (Simulation) m;
+        Iterator<Agent> it = s.iterator();
+        while (it.hasNext()){
+            Thread t = new Thread(it.next());
+            t.start();
+        }
     }
 }

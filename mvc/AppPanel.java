@@ -12,7 +12,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     protected JPanel controlPanel;
     private JFrame frame;
     public static int FRAME_WIDTH = 500;
-    public static int FRAME_HEIGHT = 300;
+    public static int FRAME_HEIGHT = 275;
 
     // Constructor
     public AppPanel(AppFactory factory) {
