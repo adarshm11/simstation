@@ -14,13 +14,12 @@ public class Bird extends Agent {
 
     public void update(){
         Bird neighbor = (Bird) world.getNeighbor(this, 10);
-        while (neighbor == null){
-            neighbor = (Bird) world.getNeighbor(this, 10);
+        if (neighbor != null) {
+            int newSpeed = neighbor.speed;
+            Heading newHeading = neighbor.heading;
+            this.speed = newSpeed;
+            this.heading = newHeading;
         }
-        int newSpeed = neighbor.speed;
-        Heading newHeading = neighbor.heading;
-        this.speed = newSpeed;
-        this.heading = newHeading;
         move(speed);
     }
 }
