@@ -1,7 +1,6 @@
 package simstation;
 
 import mvc.*;
-
 import java.awt.*;
 import java.io.Serializable;
 
@@ -9,7 +8,6 @@ import java.io.Serializable;
 public abstract class Agent implements Runnable, Serializable {
 
     protected Simulation world;
-    protected String name;
     protected Heading heading;
     protected int xc = Utilities.rng.nextInt(Simulation.SIZE);
     protected int yc = Utilities.rng.nextInt(Simulation.SIZE);
@@ -58,6 +56,7 @@ public abstract class Agent implements Runnable, Serializable {
                 checkSuspended();
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
+                onInterrupted();
             }
         }
         onExit();
@@ -81,7 +80,6 @@ public abstract class Agent implements Runnable, Serializable {
     public abstract void update();
 
     public void move(int steps) {
-        Point oldPos = new Point(xc, yc);
         switch (heading) {
             case NORTH:
                 for (int i = 0; i < steps; i++) {
