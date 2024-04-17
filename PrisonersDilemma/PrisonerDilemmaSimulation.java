@@ -1,7 +1,6 @@
 package PrisonersDilemma;
 
 import mvc.*;
-import java.util.*;
 import simstation.*;
 
 public class PrisonerDilemmaSimulation extends Simulation {

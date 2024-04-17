@@ -1,6 +1,6 @@
 package RandomWalks;
 
-import mvc.Model;
+import mvc.*;
 import simstation.*;
 
 class RandomWalkFactory extends SimStationFactory {

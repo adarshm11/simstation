@@ -3,13 +3,10 @@ package Plague;
 import simstation.*;
 import mvc.*;
 
-import java.nio.file.FileSystemNotFoundException;
-
 public class PlagueSimulation extends Simulation {
     public static int VIRULENCE = 50; // % chance of infection
     public static int RESISTANCE = 2; // % chance of resisting infection
     public static int numInfected = 0;
-    // etc.
 
     public void populate(){
         for (int i = 0; i < 50; i++){
@@ -18,10 +15,7 @@ public class PlagueSimulation extends Simulation {
                 numInfected++;
             }
             addAgents(new PlagueAgent(infected));
-
         }
-
-
     }
 
     public String[] getStats(){

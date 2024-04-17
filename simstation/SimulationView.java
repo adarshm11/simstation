@@ -1,9 +1,7 @@
 package simstation;
 
 import mvc.*;
-
 import java.awt.*;
-import java.util.List;
 
 public class SimulationView extends View {
 
@@ -11,12 +9,10 @@ public class SimulationView extends View {
         super(model);
     }
 
-
     @Override
     public void paintComponent(Graphics gc) {
         super.paintComponent(gc);
         Simulation simulation = (Simulation) model;
-
 
         // Draw each agent
         for (Agent agent : simulation.agents) {

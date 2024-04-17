@@ -6,7 +6,7 @@ public class Simulation extends Model {
     public List<Agent> agents = new ArrayList<>();
     transient private Timer timer;
     protected int clock = 0;
-    protected static int SIZE =  240; // should be initialized to size of view panel, I think
+    protected static int SIZE =  240; // should be initialized to size of a square view panel
 
     private void startTimer(){
         timer = new Timer();
@@ -24,7 +24,6 @@ public class Simulation extends Model {
         }
     }
 
-    // up next are the methods corresponding to the buttons - unsure if these preliminary implementations are correct
     public void start(){
         startTimer();
         populate();
@@ -76,20 +75,14 @@ public class Simulation extends Model {
                 num = j;
             }
         }
-        //check to make sure it doenst use itself as a neighbor
-        while(!flagged && num != rng ){
-
-
+        //check to make sure it doesn't use itself as a neighbor
+        while(!flagged && num != rng){
             double xcor = Math.abs(chosen.xc - a.xc);
-
             double ycor = Math.abs(chosen.yc - a.yc);
-
             chosen = agents.get(i);
             i++;
-
             if ((xcor + ycor <= radius)){
                 neighbor = chosen;
-
                 return neighbor;
             }
             if (i == rng || i == num){
@@ -99,10 +92,8 @@ public class Simulation extends Model {
                 i = 0;
             }
         }
-
         return null;
     }
-
 
     public void populate(){
     }

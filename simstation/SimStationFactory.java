@@ -15,7 +15,7 @@ public abstract class SimStationFactory implements AppFactory {
                 "Suspend causes the agents to be frozen in place",
                 "Resume causes the suspended agents to continue interacting and moving",
                 "Stop ends the simulation",
-                "Stats reveals the number of agents remaining and the time elapsed" };
+                "Stats reveals a breakdown of the agents' vitals" };
     }
 
     public String about(){
@@ -26,12 +26,12 @@ public abstract class SimStationFactory implements AppFactory {
         return new String[] {"Start", "Suspend", "Resume", "Stop", "Stats"};
     }
 
-    public Command makeEditCommand(Model m, String name, Object source){
+    public Command makeEditCommand(Model m, String name, Object source) throws Exception {
         if (name.equals("Start")) return new StartCommand(m);
         if (name.equals("Suspend")) return new SuspendCommand(m);
         if (name.equals("Resume")) return new ResumeCommand(m);
         if (name.equals("Stop")) return new StopCommand(m);
         if (name.equals("Stats")) return new StatsCommand(m);
-        return null;
+        throw new Exception("Unrecognized command: " + name);
     }
 }

@@ -2,7 +2,6 @@ package PrisonersDilemma;
 
 import mvc.Utilities;
 import simstation.*;
-import java.util.Random;
 
 public class Prisoner extends Agent {
     private int fitness = 0;
@@ -12,6 +11,7 @@ public class Prisoner extends Agent {
     public Prisoner(Strategy strategy) {
         super();
         this.strategy = strategy;
+        this.strategy.myPrisoner = this;
     }
 
     public boolean cooperate() {
@@ -20,10 +20,6 @@ public class Prisoner extends Agent {
 
     public void updateFitness(int amount) {
         fitness += amount;
-    }
-
-    public void setPartnerCheated(boolean cheated) {
-        partnerCheated = cheated;
     }
 
     public boolean getPartnerCheated() {
@@ -43,24 +39,27 @@ public class Prisoner extends Agent {
                 this.updateFitness(3);
                 neighbor.updateFitness(3);
                 this.partnerCheated = false;
+                neighbor.partnerCheated = false;
             }
             else if (prisoner1){
                 neighbor.updateFitness(5);
                 this.partnerCheated = true;
+                neighbor.partnerCheated = false;
             }
             else if (prisoner2){
                 this.updateFitness(5);
                 this.partnerCheated = false;
+                neighbor.partnerCheated = true;
             }
             else {
                 this.updateFitness(1);
                 neighbor.updateFitness(1);
                 this.partnerCheated = true;
+                neighbor.partnerCheated = true;
             }
         }
         heading = Heading.random();
         int steps = Utilities.rng.nextInt(10) + 1;
         move(steps);
     }
-
 }
