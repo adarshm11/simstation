@@ -1,12 +1,12 @@
 package PrisonersDilemma;
 
-import mvc.Model;
-import mvc.View;
+import mvc.*;
+import simstation.*;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PrisonerDilemmaView extends View {
+public class PrisonerDilemmaView extends SimulationView {
     private Model model;
     private JPanel displayPanel;
     private JLabel statisticsLabel;
@@ -23,6 +23,7 @@ public class PrisonerDilemmaView extends View {
         add(statisticsLabel, BorderLayout.SOUTH);
     }
 
+    /*
     @Override
     public void updateView() {
         for (Prisoner prisoner : model.getPrisoners()) {
@@ -38,7 +39,8 @@ public class PrisonerDilemmaView extends View {
         String statistics = generateStatistics(); 
         statisticsLabel.setText(statistics);
     }
-    
+
+
     private String generateStatistics() {
         StringBuilder statistics = new StringBuilder();
         statistics.append("Average Fitness:\n");
@@ -60,4 +62,6 @@ public class PrisonerDilemmaView extends View {
         }
         return count > 0 ? totalFitness / count : 0;
     }
+
+    */
 }

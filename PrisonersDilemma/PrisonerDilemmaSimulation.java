@@ -1,18 +1,14 @@
 package PrisonersDilemma;
 
-import mvc.Model;
-import mvc.Utilities;
+import mvc.*;
+import java.util.*;
+import simstation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-public class PrisonerDilemmaSimulation extends Model {
+public class PrisonerDilemmaSimulation extends Simulation {
     private List<Prisoner> prisoners;
     private int gridSize;
 
-    public PrisonerDilemmaSimulation(int gridSize) {
-        this.gridSize = gridSize;
+    public PrisonerDilemmaSimulation() {
         prisoners = new ArrayList<>();
 
         // Initialize prisoners with random strategies
@@ -40,6 +36,11 @@ public class PrisonerDilemmaSimulation extends Model {
             }
             prisoners.add(new Prisoner(strategy));
         }
+    }
+
+    public static void main(String[] args){
+        AppPanel panel = new SimStationPanel(new PrisonerDilemmaFactory());
+        panel.display();
     }
 
 }
