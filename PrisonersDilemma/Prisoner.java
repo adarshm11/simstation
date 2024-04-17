@@ -33,8 +33,18 @@ public class Prisoner extends Agent {
     }
 
     public void update() {
-        // must be implemented
+        // Update strategy or fitness based on the outcome of the last interaction
+        if (partnerCheated) {
+            // If partner cheated, adjust strategy or fitness accordingly
+            if (myPrisonerStrategy instanceof Tit4Tat) {
+                Tit4Tat tit4TatStrategy = (Tit4Tat) myPrisonerStrategy;
+                boolean lastMove = tit4TatStrategy.cooperate();
+                if (!lastMove) {
+                    updateFitness(5);
+                }
+            }
+        }
+        partnerCheated = false;
     }
 
-    // Other methods as needed
 }

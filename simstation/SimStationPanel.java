@@ -1,4 +1,5 @@
 package simstation;
+
 import mvc.*;
 import java.awt.*;
 import javax.swing.*;
@@ -11,9 +12,8 @@ public class SimStationPanel extends AppPanel {
     private JButton stop;
     private JButton stats;
 
-    public SimStationPanel(AppFactory factory){
+    public SimStationPanel(AppFactory factory) {
         super(factory);
-
 
         start = new JButton("Start");
         start.addActionListener(this);

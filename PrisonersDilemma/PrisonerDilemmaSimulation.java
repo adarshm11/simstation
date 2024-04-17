@@ -36,11 +36,10 @@ public class PrisonerDilemmaSimulation extends Model {
                     strategy = new Tit4Tat();
                     break;
                 default:
-                    strategy = new RandomStrategy(); // Implement RandomStrategy if needed
+                    strategy = new Cooperate();
             }
             prisoners.add(new Prisoner(strategy));
         }
     }
 
-    // Implement simulation logic, interactions, updating fitness scores, etc.
 }
