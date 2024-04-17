@@ -19,7 +19,6 @@ public class Bird extends Agent {
             Heading newHeading = neighbor.heading;
             this.speed = newSpeed;
             this.heading = newHeading;
-
         }
         move(speed);
     }

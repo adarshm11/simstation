@@ -1,19 +1,21 @@
 package PrisonersDilemma;
 
+import mvc.Utilities;
 import simstation.*;
 import java.util.Random;
 
 public class Prisoner extends Agent {
     private int fitness = 0;
     private boolean partnerCheated = false;
-    private Strategy myPrisonerStrategy;
+    protected Strategy strategy;
 
     public Prisoner(Strategy strategy) {
-        myPrisonerStrategy = strategy;
+        super();
+        this.strategy = strategy;
     }
 
     public boolean cooperate() {
-        return myPrisonerStrategy.cooperate();
+        return strategy.cooperate();
     }
 
     public void updateFitness(int amount) {
@@ -33,18 +35,28 @@ public class Prisoner extends Agent {
     }
 
     public void update() {
-        // Update strategy or fitness based on the outcome of the last interaction
-        if (partnerCheated) {
-            // If partner cheated, adjust strategy or fitness accordingly
-            if (myPrisonerStrategy instanceof Tit4Tat) {
-                Tit4Tat tit4TatStrategy = (Tit4Tat) myPrisonerStrategy;
-                boolean lastMove = tit4TatStrategy.cooperate();
-                if (!lastMove) {
-                    updateFitness(5);
-                }
+        Prisoner neighbor = (Prisoner) world.getNeighbor(this, 10);
+        if (neighbor != null){
+            boolean prisoner1 = this.cooperate();
+            boolean prisoner2 = neighbor.cooperate();
+            if (prisoner1 && prisoner2){
+                this.updateFitness(3);
+                neighbor.updateFitness(3);
+            }
+            else if (prisoner1){
+                neighbor.updateFitness(5);
+            }
+            else if (prisoner2){
+                this.updateFitness(5);
+            }
+            else {
+                this.updateFitness(1);
+                neighbor.updateFitness(1);
             }
         }
-        partnerCheated = false;
+        heading = Heading.random();
+        int steps = Utilities.rng.nextInt(10) + 1;
+        move(steps);
     }
 
 }

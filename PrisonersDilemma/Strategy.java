@@ -1,5 +1,7 @@
 package PrisonersDilemma;
 
-public interface Strategy {
-    boolean cooperate();
+public abstract class Strategy {
+
+    protected Prisoner myPrisoner;
+    public abstract boolean cooperate();
 }

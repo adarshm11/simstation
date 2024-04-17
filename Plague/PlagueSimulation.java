@@ -14,7 +14,7 @@ public class PlagueSimulation extends Simulation {
     public void populate(){
         for (int i = 0; i < 50; i++){
             boolean infected = Utilities.rng.nextInt(100) < VIRULENCE;
-            if (infected == true){
+            if (infected){
                 numInfected++;
             }
             addAgents(new PlagueAgent(infected));
