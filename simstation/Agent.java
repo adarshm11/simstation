@@ -1,4 +1,5 @@
 package simstation;
+
 import mvc.*;
 
 import java.awt.*;
@@ -17,90 +18,103 @@ public abstract class Agent implements Runnable, Serializable {
     protected Color color = Color.WHITE;
     transient protected Thread myThread;
 
-    public synchronized void checkSuspended(){
+    public synchronized void checkSuspended() {
         try {
             while (!stopped && suspended) {
                 wait();
                 suspended = false;
             }
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public synchronized boolean isStopped() { return stopped; }
+    public synchronized boolean isStopped() {
+        return stopped;
+    }
 
-    public synchronized boolean isSuspended() { return suspended;  }
+    public synchronized boolean isSuspended() {
+        return suspended;
+    }
 
-    public synchronized void join(){
+    public synchronized void join() {
         try {
-            if (myThread != null){
+            if (myThread != null) {
                 myThread.join();
             }
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void run(){
-        while (!isStopped()){
+    public void run() {
+        while (!isStopped()) {
             try {
                 update();
                 Thread.sleep(20);
                 checkSuspended();
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public void start(){}
+    public void start() {
+    }
 
-    public synchronized void suspend(){
+    public synchronized void suspend() {
         suspended = true;
     }
 
-    public synchronized void resume(){
+    public synchronized void resume() {
         notify();
     }
 
-    public synchronized void stop(){
+    public synchronized void stop() {
         stopped = true;
     }
 
     public abstract void update();
 
-    public void move(int steps){
+    public void move(int steps) {
         Point oldPos = new Point(xc, yc);
-        switch(heading) {
+        switch (heading) {
             case NORTH:
-                for (int i = 0; i < steps; i++){
-                    if (yc < 0) yc = simstation.Simulation.SIZE - 1;
-                    else yc--;
+                for (int i = 0; i < steps; i++) {
+                    if (yc < 0)
+                        yc = simstation.Simulation.SIZE - 1;
+                    else
+                        yc--;
                     world.changed();
                 }
                 break;
 
             case EAST:
-                for (int i = 0; i < steps; i++){
-                    if (xc > simstation.Simulation.SIZE - 1) xc = 0;
-                    else xc++;
+                for (int i = 0; i < steps; i++) {
+                    if (xc > simstation.Simulation.SIZE - 1)
+                        xc = 0;
+                    else
+                        xc++;
                     world.changed();
                 }
                 break;
 
             case SOUTH:
-                for (int i = 0; i < steps; i++){
-                    if (yc > simstation.Simulation.SIZE - 1) yc = 0;
-                    else yc++;
+                for (int i = 0; i < steps; i++) {
+                    if (yc > simstation.Simulation.SIZE - 1)
+                        yc = 0;
+                    else
+                        yc++;
                     world.changed();
                 }
                 break;
 
             case WEST:
-                for (int i = 0; i < steps; i++){
-                    if (xc < 0) xc = simstation.Simulation.SIZE - 1;
-                    else xc--;
+                for (int i = 0; i < steps; i++) {
+                    if (xc < 0)
+                        xc = simstation.Simulation.SIZE - 1;
+                    else
+                        xc--;
                     world.changed();
                 }
                 break;
