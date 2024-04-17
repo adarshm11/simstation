@@ -42,16 +42,20 @@ public class Prisoner extends Agent {
             if (prisoner1 && prisoner2){
                 this.updateFitness(3);
                 neighbor.updateFitness(3);
+                this.partnerCheated = false;
             }
             else if (prisoner1){
                 neighbor.updateFitness(5);
+                this.partnerCheated = true;
             }
             else if (prisoner2){
                 this.updateFitness(5);
+                this.partnerCheated = false;
             }
             else {
                 this.updateFitness(1);
                 neighbor.updateFitness(1);
+                this.partnerCheated = true;
             }
         }
         heading = Heading.random();
